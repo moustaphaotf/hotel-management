@@ -3,6 +3,7 @@ from .models import Hotel
 
 class HotelSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source="owner.username")
+    image = serializers.ImageField(required=False)
 
     class Meta:
         model = Hotel

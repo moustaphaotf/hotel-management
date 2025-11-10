@@ -29,7 +29,7 @@ var/
 
 # --- Fichiers d'environnement et secrets ---
 # Fichier de variables d'environnement
-.env
+.env*
 
 # --- Django ---
 db.sqlite3

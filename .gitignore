@@ -1,0 +1,72 @@
+# --- Environnement Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pkl
+*.log
+
+# --- Environnement virtuel ---
+venv/
+.env/
+.venv/
+env/
+ENV/
+build/
+develop-eggs/
+dist/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# --- Fichiers d'environnement et secrets ---
+# Fichier de variables d'environnement
+.env
+
+# --- Django ---
+db.sqlite3
+/media/
+staticfiles/
+static/
+tmp/
+*.sqlite3
+*.db
+
+# --- VSCode / IDE ---
+.vscode/
+.idea/
+*.swp
+
+# --- Mac / Windows spécifiques ---
+.DS_Store
+Thumbs.db
+
+# --- Logs et backups ---
+*.log
+*.bak
+*.old
+
+# --- Tests / coverage ---
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+*.pytest_cache/
+
+# --- Docker ---
+*.pid
+docker-compose.override.yml

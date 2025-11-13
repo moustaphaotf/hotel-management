@@ -32,9 +32,16 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
+print(ALLOWED_HOSTS)
 
 
 # Application definition
+
+def _split_env_list(value: str | None) -> list[str]:
+    if not value:
+        return []
+    return [item.strip() for item in value.split(",") if item.strip()]
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -46,6 +53,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
     "django_filters",
+    "corsheaders",
     "accounts",
     "hotels",
 ]
@@ -54,6 +62,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -83,6 +92,15 @@ SIMPLE_JWT = {
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
     # autres options par défaut possibles
 }
+
+CORS_ALLOWED_ORIGINS = (
+    _split_env_list(os.getenv("CORS_ALLOWED_ORIGINS"))
+    or [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+    ]
+)
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'hotel_project.urls'
 

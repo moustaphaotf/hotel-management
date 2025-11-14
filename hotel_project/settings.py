@@ -93,14 +93,49 @@ SIMPLE_JWT = {
     # autres options par défaut possibles
 }
 
-CORS_ALLOWED_ORIGINS = (
-    _split_env_list(os.getenv("CORS_ALLOWED_ORIGINS"))
-    or [
+# Configuration CORS
+CORS_ALLOWED_ORIGINS = _split_env_list(os.getenv("CORS_ALLOWED_ORIGINS"))
+if not CORS_ALLOWED_ORIGINS:
+    # Fallback pour le développement local
+    CORS_ALLOWED_ORIGINS = [
         "http://localhost:3000",
         "http://127.0.0.1:3000",
     ]
-)
+
+# Autoriser les credentials (cookies, headers d'authentification)
 CORS_ALLOW_CREDENTIALS = True
+
+# Méthodes HTTP autorisées
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+
+# Headers autorisés
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
+
+# Headers exposés au client
+CORS_EXPOSE_HEADERS = [
+    "content-type",
+    "x-total-count",
+]
+
+# Durée de cache pour les requêtes preflight (en secondes)
+CORS_PREFLIGHT_MAX_AGE = 86400  # 24 heures
 
 ROOT_URLCONF = 'hotel_project.urls'
 
